@@ -2,12 +2,13 @@
     padding: 0%                                   !important;
     flex-shrink: 0;
     object-position: bottom center;
-    object-fit: contain;
+    /* object-fit: contain; */
   }
 
   .ac-adaptiveCard {
-    background-image: conic-gradient(from 139deg at 82.04% 107.20%, #022F22  182.4640703201294deg, #022F22A1 360deg);
-    filter: drop-shadow(0px 0.30000001192092896px 0.8999999761581421px rgba(0, 0, 0, 0.11)) drop-shadow(0px 1.600000023841858px 3.5999999046325684px rgba(0, 0, 0, 0.13));
+    background-color: #022F22                   !important;
+    /* background-image: conic-gradient(from 139deg at 82.04% 107.20%, #022F22  182.4640703201294deg, #022F22A1 360deg); */
+    /* filter: drop-shadow(0px 0.30000001192092896px 0.8999999761581421px rgba(0, 0, 0, 0.11)) drop-shadow(0px 1.600000023841858px 3.5999999046325684px rgba(0, 0, 0, 0.13)); */
     flex-shrink: 0;
     border-radius: 5px;
     width: 244px;
@@ -19,9 +20,9 @@
     left: 0;
   }
 
-  .ac-adaptiveCard:hover {
+  /* .ac-adaptiveCard:hover {
     background-image: conic-gradient(from 90deg at 82.04% 107.20%, #022F22  182.4640703201294deg, #022F22A1 360deg);
-  }
+  } */
 
   .ac-image {
     width: 120px;

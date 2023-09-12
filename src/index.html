@@ -1,15 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>A JavaScript project</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- <link rel="stylesheet" href="./default-template/default-template.css"> -->
-  <link rel="stylesheet" href="./microsoft-badge-template/microsoft-template.css">
+  <script src="https://cdn.jsdelivr.net/npm/adaptivecards@2.10.0/dist/adaptivecards.js"></script>
+  <style>
+  /* Apply styling to your card. You can either specify the styling using classes introduced specifically for Adaptive Cards items or you can assign id's to items to individually style them.  */
+  /* Check out https://learn.microsoft.com/en-us/adaptive-cards/sdk/rendering-cards/javascript/native-styling for more information on styling. */
+  body {
+    width: 132px;
+    height: 242px;
+    margin: 0px       !important;
+  }
+    .ac-container {
+      padding: 0%                                   !important;
+      flex-shrink: 0;
+      object-position: bottom center;
+      object-fit: contain;
+    }
+
+    #upper-container {
+      background-color: #00A4EF;
+      width: 100%;
+      height: 60%;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+
+    #lower-container {
+      background-color: white;
+      width: 100%;
+      height: 40%;
+      border-radius: 5px;
+    }
+
+    .ac-adaptiveCard {
+      color: white;
+      filter: drop-shadow(0px 0.30000001192092896px 0.8999999761581421px rgba(0, 0, 0, 0.11)) drop-shadow(0px 1.600000023841858px 3.5999999046325684px rgba(0, 0, 0, 0.13));
+      flex-shrink: 0;
+      border-radius: 5px !important;
+      width: 132px;
+      height: 242px;
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    #profile-picture {
+      filter: drop-shadow(0px 0.30000001192092896px 0.8999999761581421px rgba(0, 0, 0, 0.11)) drop-shadow(0px 1.600000023841858px 3.5999999046325684px rgba(0, 0, 0, 0.13));
+      width: 70%;
+      height: 70%;
+      margin: auto;
+      display: block;
+    }
+    #tenant-logo {
+      object-position: bottom left;
+      width: 50%;
+      height: 30%;
+      padding-left: 5px;
+      margin-top: auto;
+    }
+
+    .ac-textBlock {
+      color: black                           !important;
+      font-family: Segoe UI                    !important;
+      font-size: 12px                          !important;
+      font-style: normal                       !important;
+      font-weight: 400                         !important;
+      line-height: 133.333%                    !important;
+      padding: 5px                             !important;
+      text-align: right;
+    }
+
+    #name {
+      text-align: left                         !important;
+      position: left;
+    }
+
+    .ac-horizontal-separator {
+      height: 0px                             !important;
+    }
+  </style>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <div id="app"></div>
-  <div id="cardContainer"></div>
-  <script src="main.js"></script>
+  <script>
+    const adaptiveCard = new AdaptiveCards.AdaptiveCard();
+    // The data that will be dynamically populated in the card.
+    // For images you can populate the card using URL's or base64, which must be prefixed with "data:image/png;base64,". It cannot be in base64url format.
+    // This is just an example. The actual data of the card will be populated using the decoded VC.
+    const data =
+  {
+      "logo": "",
+      "type-of-card": "Verified Employee",
+      "tenant": "Microsoft",
+      "name": "Alexandra",
+      "profile-picture": ""
+    }
+    // This is the template for the card. It contains placeholders for the data that will be populated.
+    // It must be in JSON format and designed using the Adaptive Card Designer: https://adaptivecards.io/designer/.
+    // TODO: change this with your own template.
+    const card =
+    {
+      "type": "AdaptiveCard",
+      "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+      "version": "1.5",
+      "body": [
+          {
+              "type": "Container",
+              "items": [
+                  {
+                      "type": "Image",
+                      "style": "Person",
+                      "url": "${profile-picture}",
+                      "id": "profile-picture"
+                  }
+              ],
+              "id": "upper-container"
+          },
+          {
+              "type": "Container",
+              "items": [
+                  {
+                      "type": "TextBlock",
+                      "text": "${name}",
+                      "wrap": true,
+                      "id": "name"
+                  }, {
+                      "type": "Image",
+                      "url": "${logo}",
+                      "altText": "{company-logo}",
+                      "id": "tenant-logo"
+          }
+
+              ],
+              "id": "lower-container"
+          }
+      ]
+    }
+
+    // Parse the card payload
+    adaptiveCard.parse(card);
+    // Render the card to an HTML element:
+    var renderedCard = adaptiveCard.render();
+
+    // Append the card to the document (applies the necessary styling).
+    document.body.appendChild(renderedCard);
+  </script>
 </body>
 </html>
