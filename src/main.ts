@@ -1,12 +1,7 @@
+// ATTENTION : This script is no longer called in the HTML file, modifying this will not change anything.
+// This file can be used for testing and debugging purposes, but it not required to render a card.
+
 import * as AdaptiveCards from "adaptivecards";
-
-/* Default Template card imports. */
-import defaultCardJson from './default-template/default-template.json';
-//import data from './default-template/default-template-data.json' assert { type: 'json' };
-
-// import msftCard from './microsoft-badge-template/microsoft-badge-template.json';
-import msftCardData from './microsoft-badge-template/microsoft-badge-template-data.json';
-import nodeHtmlToImage from "node-html-to-image";
 
 // Create an AdaptiveCard instance
 const adaptiveCard = new AdaptiveCards.AdaptiveCard();
@@ -69,17 +64,6 @@ var renderedCard = adaptiveCard.render();
 if (renderedCard) {
     // Append the card to the document (applies the necessary styling).
     document.body.appendChild(renderedCard);
-    // Capture the rendered card as an image using html2canvas
-    // html2canvas(renderedCard).then((canvas: { toDataURL: (format: string, quality: number) => string; }) => {
-    //     // Create an image element.
-    //     const image = document.createElement('img');
-    //     // Set the source of the image to the generated canvas.
-    //     image.src = canvas.toDataURL("png", 1.0); // Adjust quality value as needed
-    //     console.log("Yay it worked!")
-    //     document.body.appendChild(image);
-    // }).catch((error : any) => {
-    //     console.error(error);
-    // });
 } else {
     console.error("Error rendering AdaptiveCard");
 }
